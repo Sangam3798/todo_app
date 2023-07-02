@@ -34,7 +34,7 @@ class AddBottomSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Add New Todo', style: AppTextStyle.textStyle16W700),
+          Text(taskName != null ? 'Edit Todo':'Add New Todo', style: AppTextStyle.textStyle16W700),
           const SizedBox(height: 16),
           const Divider(thickness: 1),
           const SizedBox(height: 16),
@@ -45,7 +45,7 @@ class AddBottomSheet extends StatelessWidget {
           SizedBox(
             height: 200,
             child: CupertinoDatePicker(
-              initialDateTime: initialDate != null ? DateTime.parse(initialDate!) : DateTime.now(),
+              initialDateTime: initialDate != null ? DateTime.parse(initialDate!) : DateTime.now().add(Duration(seconds: 5)),
               onDateTimeChanged: onChangedDate,
               minimumDate: DateTime.now(),
               maximumDate: DateTime(5000),
@@ -56,7 +56,7 @@ class AddBottomSheet extends StatelessWidget {
           // isLoading
           //     ? Transform.scale(child: const CircularProgressIndicator())
           //     :
-          PrimaryButton(buttonTxt: 'Add Todo', onTap: onTap),
+          PrimaryButton(buttonTxt: taskName != null ? 'Edit Todo' :'Add Todo', onTap: onTap),
           const SizedBox(height: 16),
         ],
       ),

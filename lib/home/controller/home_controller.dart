@@ -53,13 +53,18 @@ class HomeController with ChangeNotifier {
     List<TodoModel>? response  = await FirebaseService.instance.getDataFromFireStore();
     if(response != null){
       todos = response;
+      todos?.sort((a, b){
+        return DateTime.parse(a.date ?? '').compareTo(DateTime.parse(b.date ?? ''));
+      });
     }
-    log('response ${response?.first.taskName}');
   }
 
   Future<void>deleteTodo(String todoId)async{
+    addTodoLoader = true;
+    notifyListeners();
     await FirebaseService.instance.deleteDataFromFireStore(todoId: todoId);
     await getTodos();
+    addTodoLoader = false;
     notifyListeners();
   }
 

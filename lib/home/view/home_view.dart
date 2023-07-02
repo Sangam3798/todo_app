@@ -97,7 +97,9 @@ class HomeView extends StatelessWidget {
                       itemCount: homeController.todos?.length ?? 0,
                       itemBuilder: (context, index) {
                         return Slidable(
-                          key: Key(homeController.todos?[index].todoId ?? 'N/A'),
+                          useTextDirection: false,
+                          closeOnScroll: false,
+                            key: UniqueKey(),
                           endActionPane: ActionPane(
                             motion: const BehindMotion(),
                             dismissible: DismissiblePane(onDismissed: () async {
